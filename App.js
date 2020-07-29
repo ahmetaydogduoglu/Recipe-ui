@@ -3,6 +3,25 @@ import React from 'react';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
 import styled from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons"
+
+const recipeList = [
+  {
+    name: "Basil",
+    info: "45 min | 2 servings",
+    image: require("./assets/basil.jpg")
+  },
+  {
+    name: "Romesco Sauce",
+    info: "20 min | 4 servings",
+    image: require("./assets/romesco.jpg")
+  },
+  {
+    name: "Tometo",
+    info: "45 min | 2 servings",
+    image: require("./assets/tomato.jpg")
+  }
+]
+
 export default function App() {
   return (
     <Container>
@@ -15,7 +34,6 @@ export default function App() {
             </Back>
             <TouchableOpacity>
               <MaterialIcons name="favorite" color="#fff" size={24} />
-
             </TouchableOpacity>
           </MenuBar>
 
@@ -30,6 +48,33 @@ export default function App() {
           <Button><Text>Learn More</Text></Button>
         </SafeAreaView>
       </RecipeImageBackground>
+      <RecipesContainer>
+        <Text dark large bold>
+          Recipes
+        </Text>
+        <Text dark small>
+          18 recipes available
+        </Text>
+        <Recipes>
+        {
+          recipeList.map(item => (
+            <Recipe>
+              <RecipeImage source={item.image} />
+              <RecipeInfo>
+                <Text dark small bold>
+                  {item.name}
+                </Text>
+                <Text dark small>
+                  {item.info}
+                </Text>
+              </RecipeInfo>
+            </Recipe>
+          ))
+        }
+      </Recipes>
+      </RecipesContainer>
+     
+
     </Container>
   );
 }
@@ -41,7 +86,7 @@ const Container = styled.View`
 
 const Text = styled.Text`
   color:${({ dark }) => (dark ? "#000" : "#fff")};
-  font-weight:${(props) => (props.bold ? "bold" : 600)}
+  font-weight:${(props) => (props.bold ? "bold" : 400)}
   ${({ title, large, small }) => {
     switch (true) {
       case title:
@@ -72,7 +117,7 @@ border-radius:5px
 `
 const MainRecipe = styled.View`
   padding: 0 15px;
-  margin: 180px 0  25px;
+  margin: 125px 0  25px;
 `
 
 const RecipeTextContainer = styled.View`
@@ -96,3 +141,31 @@ const Button = styled.TouchableOpacity`
   border-radius:100px
  `
 
+const RecipesContainer = styled.View`
+  margin-top:-15px;
+  padding:25px;
+  background-color:#fff;
+  border-top-left-radius:23px;
+  border-top-right-radius:23px;
+`
+
+const Recipes = styled.View`
+  margin-top:15px
+`
+
+const Recipe = styled.View`
+  flex-direction:row;
+  align-items:center;
+  margin-bottom:5px;
+
+`
+const RecipeImage = styled.Image`
+  width:60px;
+  height:60px;
+  border-radius:5px
+`
+
+const RecipeInfo=styled.View`
+  flex:1;
+  margin-left:10px
+`
