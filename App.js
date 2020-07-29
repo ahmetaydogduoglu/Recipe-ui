@@ -56,24 +56,28 @@ export default function App() {
           18 recipes available
         </Text>
         <Recipes>
-        {
-          recipeList.map(item => (
-            <Recipe>
-              <RecipeImage source={item.image} />
-              <RecipeInfo>
-                <Text dark small bold>
-                  {item.name}
-                </Text>
-                <Text dark small>
-                  {item.info}
-                </Text>
-              </RecipeInfo>
-            </Recipe>
-          ))
-        }
-      </Recipes>
+          {
+            recipeList.map(item => (
+              <Recipe>
+                <RecipeImage source={item.image} />
+                <RecipeInfo>
+                  <Text dark small bold>
+                    {item.name}
+                  </Text>
+                  <Text dark small>
+                    {item.info}
+                  </Text>
+                </RecipeInfo>
+                <TouchableOpacity>
+                <MaterialIcons name="favorite-border"  size={24} />
+                </TouchableOpacity>
+
+              </Recipe>
+            ))
+          }
+        </Recipes>
       </RecipesContainer>
-     
+
 
     </Container>
   );
@@ -109,11 +113,11 @@ const MenuBar = styled.View`
   padding:16px
 `
 const Back = styled.TouchableOpacity`
-flex-direction:row;
-align-items: center;
-background-color: rgba(0,0,0,.5);
-padding:5px
-border-radius:5px
+  flex-direction:row;
+  align-items: center;
+  background-color: rgba(0,0,0,.5);
+  padding:5px
+  border-radius:5px
 `
 const MainRecipe = styled.View`
   padding: 0 15px;
@@ -121,17 +125,17 @@ const MainRecipe = styled.View`
 `
 
 const RecipeTextContainer = styled.View`
-background-color: rgba(0,0,0,.5);
-padding:5px;
-align-self: flex-start;
-border-radius:5px
+  background-color: rgba(0,0,0,.5);
+  padding:5px;
+  align-self: flex-start;
+  border-radius:5px
 `
 
 const Divider = styled.View`
-     border-bottom-color:#fff;
-     border-bottom-width:2px;
-     width:150px;
-     margin:8px 0px; 
+  border-bottom-color:#fff;
+  border-bottom-width:2px;
+  width:150px;
+  margin:8px 0px; 
 `
 const Button = styled.TouchableOpacity`
   margin: 0 0 30px 15px;
@@ -165,7 +169,7 @@ const RecipeImage = styled.Image`
   border-radius:5px
 `
 
-const RecipeInfo=styled.View`
+const RecipeInfo = styled.View`
   flex:1;
   margin-left:10px
 `
